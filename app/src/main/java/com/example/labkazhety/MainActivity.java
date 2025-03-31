@@ -7,9 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-
 public class MainActivity extends AppCompatActivity {
-
     private EditText editFileData;
     private TextView textFileData;
     private ListView listViewFiles;
@@ -31,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         displayFileList();
 
-
+        // При клике загружает содержимое всех файлов
         listViewFiles.setOnItemClickListener((parent, view, position, id) -> {
             loadAllFiles();
         });
     }
 
-
+    // Сохранение текста в файл
     private void saveToFile() {
         String data = editFileData.getText().toString().trim();
         if (data.isEmpty()) {
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    // Загрузка всех файлов и их содержимого
     private void loadAllFiles() {
         File directory = getExternalFilesDir(null);
         File[] files = directory.listFiles();
@@ -88,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         textFileData.setText(allContent.toString());
     }
+
+    // Обновление списка файлов
     private void displayFileList() {
         File directory = getExternalFilesDir(null);
         File[] files = directory.listFiles();
