@@ -3,6 +3,7 @@ package com.example.labkazhety;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +16,18 @@ public class SignUpActivity extends AppCompatActivity {
     private Button btnCreateUser;
     private static final String PREFS_NAME = "UserPrefs";
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_up);
+
+        edUsername = findViewById(R.id.edUsername);
+        edPassword = findViewById(R.id.edPassword);
+        edConfirmPassword = findViewById(R.id.edConfirmPassword);
+        btnCreateUser = findViewById(R.id.btnCreateUser);
+
+        btnCreateUser.setOnClickListener(v -> registerUser());
+    }
 
     private void registerUser() {
         String username = edUsername.getText().toString().trim();
@@ -33,7 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
-        // Проверяем, есть ли уже такой пользователь
         if (sharedPreferences.contains(username)) {
             Toast.makeText(this, "Пользователь уже существует!", Toast.LENGTH_SHORT).show();
             return;
