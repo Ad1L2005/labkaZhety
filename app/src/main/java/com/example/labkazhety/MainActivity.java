@@ -1,6 +1,9 @@
 package com.example.labkazhety;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +12,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText editFileData;
+    private TextView textFileData;
+    private ListView listViewFiles;
+    private String selectedFileName = "test.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
