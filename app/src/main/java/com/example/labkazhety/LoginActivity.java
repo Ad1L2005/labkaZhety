@@ -3,6 +3,7 @@ package com.example.labkazhety;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +16,23 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin, btnSignUp;
     private static final String PREFS_NAME = "UserPrefs";
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        edUsername = findViewById(R.id.edUsername);
+        edPassword = findViewById(R.id.edPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnSignUp = findViewById(R.id.btnSignUp);
+
+        btnSignUp.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            startActivity(intent);
+        });
+
+        btnLogin.setOnClickListener(v -> loginUser());
+    }
 
     private void loginUser() {
         String usernameInput = edUsername.getText().toString().trim();
